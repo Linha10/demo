@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Hello World">
+
+  <!-- <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="./js/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./btn-action.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <title>個人資料表</title>
+</head>
+
+<body>
+  <div class="myProfile">個人資料表</div>
+  <br />
+
+  <div class="btnGroup">
+    <button type="button" id="addbutton" class="btn" data-toggle="modal" data-target="#addBtn">
+      新增
+    </button>
+    <button id="searchbutton" type="button" class="btn-primary btn">搜尋</button>
+  </div>
+
+  <br />
+
+  <div class="table">
+    <table id="cardtable" class='table-stripeds' cellpadding='0' cellspacing='0' border='2' bordercolor='black'
+      width="100%">
+      <thead>
+        <tr>
+          <th>中文名字</th>
+          <th>英文名字</th>
+          <th>性別</th>
+          <th>手機</th>
+          <th>電子信箱</th>
+          <th>修改</th>
+          <th>刪除</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+
+  <!-- 新增表單 bootstrap4 -->
+  <div class="modal fade" id="addBtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">新增表單</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method='post' id='addform' action="">
+            <div class='formcnname'>
+              <div>
+                <label>中文姓名</label> <input name="cnname" size="8" type="text" id="addcnname"
+                  class="form-control proName" required>
+              </div>
+            </div>
+            <div class="formenname">
+              <div>
+                <label>英文姓名</label> <input name="enname" type="text" id="addenname" placeholder="Peter"
+                  class="form-control inputSetting">
+              </div>
+            </div>
+            <div class="phone">
+              <label>手機號碼(0912-345-678)<input type="tel" class="form-control" style="width:150px;" maxlength="12"
+                  placeholder="0912-345-678" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required></label>
+            </div>
+            <div class="eMail">
+              <label>電子信箱<input type="email" style="width: 250px" class="form-control" placeholder="yourGmail@gmail.com"
+                  required></label>
+            </div>
+            <div class="formsex">
+              <label>性別</label>
+              <div>
+                <label><input type="radio" name="addsex" value="man" class="radio" checked="checked">男</label>
+                <label><input type="radio" name="addsex" value="woman" class="radio">女</label>
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <input type="submit" class="btn btn-primary" value='儲存' />
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- 刪除 待修正 -->
+  <div class="modal fade" id="deleteBtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">刪除表單</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> -->
+        <!-- <div class="modal-body">
+          <form method='post' id='addform'>
+            <div class='formcnname'>
+              <div>
+                <label>中文姓名</label> <input name="cnname" style="width: 100px" type="text" id="addcnname"
+                  class="form-control">
+              </div>
+            </div>
+            <div class="formenname">
+              <div>
+                <label>英文姓名</label> <input name="enname" style="width: 100px" type="text" id="addenname"
+                  class="form-control">
+              </div>
+            </div>
+            <div class="formsex">
+              <label>性別</label>
+              <div>
+                <label><input type="radio" name="addsex" value="man" class="radio" checked="checked">男</label>
+                <label><input type="radio" name="addsex" value="woman" class="radio">女</label>
+              </div>
+            </div>
+          </form>
+        </div> -->
+        <div class="modal-body">
+          <h1 class="danger border-0">確認刪除該項資料？</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">確認</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modify -->
+  <div class="modal fade" id="modifyBtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">修改</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method='post' id='addform' action="">
+            <div class='formcnname'>
+              <div>
+                <label>中文姓名</label> <input name="cnname" size="8" type="text" id="addcnname"
+                  class="form-control proName" required>
+              </div>
+            </div>
+            <div class="formenname">
+              <div>
+                <label>英文姓名</label> <input name="enname" type="text" id="addenname" placeholder="Peter"
+                  class="form-control inputSetting">
+              </div>
+            </div>
+            <div class="phone">
+              <label>手機號碼(0912-345-678)<input type="tel" class="form-control" style="width:150px;" maxlength="12"
+                  placeholder="0912-345-678" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required></label>
+            </div>
+            <div class="eMail">
+              <label>電子信箱<input type="email" style="width: 250px" class="form-control" placeholder="yourGmail@gmail.com"
+                  required></label>
+            </div>
+            <div class="formsex">
+              <label>性別</label>
+              <div>
+                <label><input type="radio" name="addsex" value="man" class="radio" checked="checked">男</label>
+                <label><input type="radio" name="addsex" value="woman" class="radio">女</label>
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <input type="submit" class="btn btn-primary" value='儲存' />
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="dialog-addconfirm" title="新增表單" style="display: none"> 
+    <form method="post" id="addform">
+      <div class="formcnname">
+        <div>
+          <label>中文姓名</label> <input name="cnname" style="width: 100px" type="text" id="addcnname" class="form-control">
+        </div>
+      </div>    
+      <div class="formenname">
+        <div>
+          <label>英文姓名</label> <input name="enname" style="width: 100px" type="text" id="addenname" class="form-control">
+        </div>
+      </div>
+      <div class="formsex">
+        <label>性別</label>
+        <div>
+          <label><input type="radio" name="addsex" value="man" class="radio" checked="checked">男</label> <label><input
+              type="radio" name="addsex" value="woman" class="radio">女</label>
+        </div>
+      </div>
+    </form>
+  </div> -->
+
+  <!--搜尋表單-->
+  <div id="dialog-searchconfirm" title="搜尋表單" style="display: none">
+    <form method="post" id="searchform">
+      <!-- 中文姓名 -->
+      <div class="formcnname">
+        <div>
+          <label>中文姓名</label> <input name="cnname" style="width: 100px" type="text" id="secnname" class="form-control">
+        </div>
+      </div>
+      <!-- 英文姓名 -->
+      <div class="formenname">
+        <div>
+          <label>英文姓名</label> <input name="enname" style="width: 100px" type="text" id="seenname" class="form-control">
+        </div>
+      </div>
+      <!-- 性別 -->
+      <div class="formsex">
+        <label>性別</label>
+        <div>
+          <label><input type="radio" name="sesex" value="man" class="seradio">男</label> <label><input type="radio"
+              name="sesex" value="woman" class="seradio">女</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!--modi-->
+  <!-- <div id="dialog-modifyconfirm" title="修改表單" style="display: none">
+    <form method="post" id="modifyform">
+      <div class="formcnname">
+        <div>
+          <label>中文姓名</label> <input name="cnname" style="width: 100px" type="text" id="mocnname" class="form-control">
+        </div>
+      </div>
+      <div class="formenname">
+        <div>
+          <label>英文姓名</label> <input name="enname" style="width: 100px" type="text" id="moenname" class="form-control">
+        </div>
+      </div>
+      <div class="formsex">
+        <label>性別</label>
+        <div>
+          <label><input type="radio" name="mosex" value="man" class="radio" id="modifyman">男</label> <label><input
+              type="radio" name="mosex" value="woman" class="radio" id="modifywoman">女</label>
+        </div>
+      </div>
+
+      <div class="formsid" style="display: none">
+        <input name="sid" id="modifysid">
+      </div>
+    </form>
+  </div> -->
+
+  <br>
+  <br>
+  <pre>
+    人易科技 前端上機測驗題
+    
+    環境：
+        - 將資料夾放到網頁伺服器中，用瀏覽器執行 http://網址/demo/index.html
+        - 依個人能力完成下列要求
+    要求：
+      1. 美化它，並說明要表達的感覺/主題，訂定的風格、配色
+      2. 將index.html中的js程式碼分離成檔案demo.js，並增加style.css檔案
+      3. 刪除鍵補上確認Dialog，且新增/修改/刪除的dialog使用bootstrap Modal實現 (bootstrap取代jQueryUI)
+      4. 表格(table)奇偶數列而有不同的底色，且滑鼠移到表格資料上時，以滑鼠指到的格子為中心，十字線上的 列/欄 都要變色 (列欄變色各得分50%)
+        |   | 色  |   |    |
+        | 色 | 鼠 | 色 | 色 |
+        |   | 色  |   |    |
+        |   | 色  |   |    |
+      5. 加二個欄位: 手機,電子信箱，並實作 欄位驗証及錯誤訊息顯示
+        - 必填：中文姓名、手機、信箱、性別
+        - 格式：手機、信箱
+        > ※ 註：手機填寫時為10碼數字，格式後面處理
+        > ※ 註：清單及編輯表單都要做
+      6. 特效實作 & 資料處理
+        - bootstrap tooltip：滑鼠「移到」人名上面時，顯示說明文字，內容格式： [性別]中文名子(英文名子)   (字串串接)
+        - bootstrap popover：滑鼠「點擊」手機上面時，顯示手機資訊，內容格式： 聯絡方式：xxxx-xxx-xxx    (字串格式轉換)
+      7. 實作bootstrap RWD效果
+      8. 提高Javascript檔物件化程度
+      9. 實作ajax
+      10. 增加自定特效，並說明其內容 (需4個特效，1個佔25%)
+
+
+      ※ 美化：選擇要表達的感覺/主題，然後訂定風格、確定配色
+      ※ 本範例為前端工程師練習題，只專注版面、美化、頁面行為，不需管後端資料
+      ※ 頁面編碼: UTF-8
+  </pre>
+</body>
+
+</html>
+
+<script type="text/javascript">
+  /**
+   * 
+   * @param string
+   *          url 呼叫controller的url
+   * @param string
+   *          datatype 資料傳回格式
+   * @uses refreshTable 利用ajax傳回資料更新Table
+   */
+  function AjaxObject(url, datatype) {
+    this.url = url;
+    this.datatype = datatype;
+    console.log(url, datatype)
+  }
+  AjaxObject.prototype.cnname = '';
+  AjaxObject.prototype.enname = '';
+  AjaxObject.prototype.sex = '';
+  AjaxObject.prototype.id = 0;
+  AjaxObject.prototype.phoneNum = '';
+  AjaxObject.prototype.eMail = ''
+  AjaxObject.prototype.alertt = function () {
+    alert("Alert:");
+  }
+  AjaxObject.prototype.getall = function () {
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0","phoneNum":"0924241234","eMail":"hello1@gmail.com"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0","phoneNum":"0924241234","eMail":"hello1@gmail.com"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0","phoneNum":"0924241234","eMail":"hello1@gmail.com"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1","phoneNum":"0924241234","eMail":"hello1@gmail.com"}]';
+    refreshTable(JSON.parse(response));
+  }
+  AjaxObject.prototype.add = function () {
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"},{"s_sn":"52","cnname":"新增帳號","enname":"NewAccount","sex":"1"}]';
+    refreshTable(JSON.parse(response));
+    $("#dialog-addconfirm").dialog("close");
+  }
+  AjaxObject.prototype.modify = function () {
+    response = '[{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"}]';
+    refreshTable(JSON.parse(response));
+    $("#dialog-modifyconfirm").dialog("close");
+  }
+  AjaxObject.prototype.modify_get = function () {
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"},{"s_sn":"50","cnname":"趙雪瑜","enname":"Sharon","sex":"0"},{"s_sn":"51","cnname":"賴佳蓉","enname":"Yoki","sex":"1"}]';
+    initEdit(JSON.parse(response));
+  }
+  AjaxObject.prototype.search = function () {
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"}]';
+    refreshTable(JSON.parse(response));
+    $("#dialog-searchconfirm").dialog("close");
+  }
+  AjaxObject.prototype.delete = function () {
+    response = '[{"s_sn":"35","cnname":"邱小甘","enname":"Peter","sex":"0"},{"s_sn":"49","cnname":"蔡凡昕","enname":"Allen","sex":"0"}]';
+    refreshTable(JSON.parse(response));
+  }
+</script>

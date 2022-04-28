@@ -1,0 +1,75 @@
+body {
+    background-image:url('https://media.discordapp.net/attachments/677538517949218820/969075150052007956/mountaiin.jpg');
+    background-repeat: no-repeat;
+    font-family: 'Noto Sans JP', sans-serif;
+    z-index: 3;
+    box-sizing:border-box;
+
+}
+
+
+.myProfile {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.btnGroup {
+    margin-left: 4vh;
+}
+#addbutton{
+    width: 100px;
+    background-color: rgb(101, 168, 196);
+    color: white;
+    font-size: bold;
+    border-radius:6%;
+}
+#addbutton:hover{
+    background-color: rgb(17, 91, 128);
+}
+table{
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow: hidden;
+}
+td, th {
+    padding: 10px;
+    position: relative;
+}
+
+
+.hoverColor{
+    background-color: red;
+}
+
+.modal-header{
+    background-color: rgba(150,45,14,0.3);
+}
+.modal-title{
+    font-size: 24px;
+    font-weight: bold;
+}
+.modal-body{
+    font-family: 'Noto Sans JP', sans-serif;
+    align-content: center;
+} 
+td:hover::before { 
+    background-color: rgb(139, 252, 214 ,0.4);
+    content: '';  
+    height: 100%;
+    left: -5000px;
+    position: absolute;  
+    top: 0;
+    width: 10000px;   
+    z-index: -2;        
+}
+
+td:hover::after { 
+    background-color: rgba(166, 195, 224, 0.5); 
+    content: '';  
+    height: 10000px;    
+    left: 0;
+    position: absolute;  
+    top: -5000px;
+    width: 100%;
+    z-index: -1;        
+}
